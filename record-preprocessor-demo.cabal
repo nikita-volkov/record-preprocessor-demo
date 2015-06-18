@@ -1,0 +1,64 @@
+-- This file shows how a project can be set up to use
+-- the Anonymous Records syntax.
+-- 
+-- For instructions please follow the comments in this file.
+-- 
+name:
+  record-preprocessor-demo
+version:
+  0.1.0.0
+synopsis:
+  A demo of how "record-preprocessor" can be used
+category:
+  Preprocessor, Compiler, Records
+homepage:
+  https://github.com/nikita-volkov/record-preprocessor-demo 
+bug-reports:
+  https://github.com/nikita-volkov/record-preprocessor-demo/issues 
+author:
+  Nikita Volkov <nikita.y.volkov@mail.ru>
+maintainer:
+  Nikita Volkov <nikita.y.volkov@mail.ru>
+copyright:
+  (c) 2015, Nikita Volkov
+license:
+  MIT
+license-file:
+  LICENSE
+build-type:
+  Simple
+cabal-version:
+  >=1.10
+
+
+source-repository head
+  type:
+    git
+  location:
+    git://github.com/nikita-volkov/record-preprocessor-demo.git
+
+
+executable record-preprocessor-demo
+  type: 
+    exitcode-stdio-1.0
+  hs-source-dirs:
+    record-preprocessor-demo
+  main-is:
+    Main.hs
+  default-language:
+    Haskell2010
+  build-tools:
+    -- A required dependency on the preprocessor:
+    record-preprocessor == 0.1.*
+  build-depends:
+    -- A required dependency on a library of record-types:
+    record == 0.4.*,
+    basic-lens == 0.0.*,
+    base-prelude == 0.1.*
+  ghc-options:
+    -- The following options enable the compiler-preprocessor
+    -- for the whole project.
+    -- For this to work your Cabal "bin" installation folder must be on Path.
+    -F -pgmF record-preprocessor
+
+
